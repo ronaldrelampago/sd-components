@@ -4,7 +4,25 @@
   "private": false,
   "license": "MIT",
   "typings": "dist/index.d.ts",
-  "main":"dist/ondex.js",
+  "main": "dist/ondex.js",
+  "homepage": "https://ronald-ortega.com",
+  "repository": {
+    "url": "https://github.com/ronaldrelampago/sd-components.git",
+    "type": "git"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "typescript": ">=4.0.0"
+  },
+  "relase": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +31,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "jsx-runtime": "^1.2.0",
     "postcss": "^8.4.16",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,10 +40,12 @@
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "build-storybook",
+    "build": "yarn clean && tsc && yarn copy-files",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=b53333a09638"
+    "chromatic": "npx chromatic --project-token=b53333a09638",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +74,17 @@
     "@storybook/react": "^6.3.12",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.0.4",
-    "css-loader": "^6.4.0"
-  }
+    "copyfiles": "^2.4.1",
+    "css-loader": "^6.4.0",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.5"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ]
 }
